@@ -1,0 +1,7 @@
+# Vivado
+*.cache
+*.hw
+*.xpr
+
+# VSCode
+.vscode
