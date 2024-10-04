@@ -2,6 +2,9 @@
 *.cache
 *.hw
 *.xpr
+*.ip_user_files
+*.sim
+*.runs
 
 # VSCode
 .vscode
