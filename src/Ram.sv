@@ -10,24 +10,24 @@
 module Ram #(
     parameter int Width = 32,
     parameter int Depth = 32,
-
-    localparam int AddrWidth = $clog2(Depth)
+    parameter int AddrWidth = 30
 ) (
     input wire clk,
     input wire reset,
     input wire read,
     input wire write,
     input wire [AddrWidth-1:0] addr,
-    input wire [Width-1:0] writeData,
-    output wire logic [Width-1:0] readData
+    input wire signed [Width-1:0] writeData,
+    output logic signed [Width-1:0] readData
 );
-  logic [Width-1:0] ram[Depth];
+  logic signed [Width-1:0] ram[Depth];
 
   always_ff @(negedge clk) begin
     if (reset) begin
-      data <= 0;
+      readData <= 0;
     end else if (addr >= Depth) begin
-      data <= 0;  // Address out of range
+      if (read || write) $error("Ram: Address out of range, %h", addr);
+      readData <= 0;
     end else if (read) begin
       readData <= ram[addr];
     end else if (write) begin

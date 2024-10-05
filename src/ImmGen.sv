@@ -20,7 +20,10 @@ module ImmGen (
       7'b0110111: out = 32'({instr[31:12], 12'b0});  // U
       7'b1101111:
       out = 32'(signed'({instr[31], instr[19:12], instr[20], instr[30:21], 1'b0}));  // J
-      default: out = 0;
+      default: begin
+        if (opcode != 'x) $error("ImmGen: Unknown instruction opcode. %b", opcode);
+        out = 0;
+      end
     endcase
   end
 endmodule

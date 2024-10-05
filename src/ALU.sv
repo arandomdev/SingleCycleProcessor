@@ -27,6 +27,9 @@ module ALU
       ALUOpcode::OR: begin
         y = a | b;
       end
+      ALUOpcode::XOR: begin
+        y = a ^ b;
+      end
       ALUOpcode::AND: begin
         y = a & b;
       end
@@ -36,7 +39,11 @@ module ALU
       ALUOpcode::SUB: begin
         y = a - b;
       end
+      ALUOpcode::EQ: begin
+        y = a == b;
+      end
       default: begin
+        if (opcode != 'x) $error("ALU: Unknown opcode, %b", opcode);
         y = 0;
       end
     endcase

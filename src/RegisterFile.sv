@@ -16,15 +16,15 @@ module RegisterFile #(
     input wire reset,
     input wire [AddrWidth-1:0] r1Addr,
     input wire [AddrWidth-1:0] r2Addr,
-    output logic [RegisterWidth-1:0] r1Data,
-    output logic [RegisterWidth-1:0] r2Data,
+    output logic signed [RegisterWidth-1:0] r1Data,
+    output logic signed [RegisterWidth-1:0] r2Data,
 
     input wire wEn,
     input wire [AddrWidth-1:0] wAddr,
-    input wire [RegisterWidth-1:0] wData
+    input wire signed [RegisterWidth-1:0] wData
 );
 
-  logic [RegisterWidth-1:0] registers[NRegisters-1];
+  logic signed [RegisterWidth-1:0] registers[NRegisters-1];
 
   // Register reads are async
   always_comb begin

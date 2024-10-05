@@ -9,8 +9,7 @@
 module Rom #(
     parameter int Width = 32,
     parameter int Depth = 32,
-
-    localparam int AddrWidth = $clog2(Depth)
+    parameter int AddrWidth = 30
 ) (
     input wire clk,
     input wire reset,

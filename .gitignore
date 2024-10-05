@@ -5,6 +5,7 @@
 *.ip_user_files
 *.sim
 *.runs
+*.dcp
 
 # VSCode
 .vscode
