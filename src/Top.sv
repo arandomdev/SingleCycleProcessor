@@ -2,10 +2,17 @@
 
 module Top
   import Shared::*;
-(
+#(
+    parameter string InstructionsFile = "program1.mem"
+) (
     input  wire rawClk,
     input  wire extReset,
-    output wire halt
+    output wire halt,
+
+    input wire ramDebugEn,
+    input wire [1:0] ramByteSel,
+    input wire [7:0] ramAddr,
+    output logic [7:0] ramData
 );
   wire clk;
   wire locked;
@@ -41,7 +48,6 @@ module Top
   wire memWrite;
   wire signed [31:0] memReadData;
   wire memToReg;
-
 
   // Instantiate modules
   ClockGenerator clockGen (
@@ -101,6 +107,7 @@ module Top
   );
 
   Rom #(
+      .InitFile(InstructionsFile),
       .Width(32),
       .Depth(32),
       .AddrWidth(30)
@@ -118,9 +125,9 @@ module Top
   ) ram (
       .clk(clk),
       .reset(reset),
-      .read(memRead),
+      .read(ramDebugEn ? 1'b1 : memRead),
       .write(memWrite),
-      .addr(30'(aluResult >> 2)),
+      .addr(ramDebugEn ? 30'(ramAddr) : 30'(aluResult >> 2)),
       .writeData(regData2),
       .readData(memReadData)
   );
@@ -158,4 +165,13 @@ module Top
     currentPC <= nextPC;
   end
 
+  always_comb begin : DebugRamSelect
+    case (ramByteSel)
+      2'b00:   ramData = memReadData[7:0];
+      2'b01:   ramData = memReadData[15:8];
+      2'b10:   ramData = memReadData[23:16];
+      2'b11:   ramData = memReadData[31:24];
+      default: ramData = 8'b0;
+    endcase
+  end
 endmodule

@@ -2,10 +2,10 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-// Date        : Sat Sep 28 20:46:43 2024
+// Date        : Wed Oct  9 21:34:07 2024
 // Host        : Spire running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               c:/Users/haow6/Desktop/projects/ECE505/SingleCycleProcessor/src/ip/ClockGenerator/ClockGenerator_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top ClockGenerator -prefix
+//               ClockGenerator_ ClockGenerator_sim_netlist.v
 // Design      : ClockGenerator
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -29,14 +29,14 @@ module ClockGenerator
   wire reset;
   wire sysClk;
 
-  ClockGenerator_clk_wiz inst
+  ClockGenerator_ClockGenerator_clk_wiz inst
        (.locked(locked),
         .rawClk(rawClk),
         .reset(reset),
         .sysClk(sysClk));
 endmodule
 
-module ClockGenerator_clk_wiz
+module ClockGenerator_ClockGenerator_clk_wiz
    (sysClk,
     reset,
     locked,
@@ -91,12 +91,12 @@ module ClockGenerator_clk_wiz
   (* BOX_TYPE = "PRIMITIVE" *) 
   MMCME2_ADV #(
     .BANDWIDTH("OPTIMIZED"),
-    .CLKFBOUT_MULT_F(10.000000),
+    .CLKFBOUT_MULT_F(9.125000),
     .CLKFBOUT_PHASE(0.000000),
     .CLKFBOUT_USE_FINE_PS("FALSE"),
     .CLKIN1_PERIOD(10.000000),
     .CLKIN2_PERIOD(0.000000),
-    .CLKOUT0_DIVIDE_F(20.000000),
+    .CLKOUT0_DIVIDE_F(36.500000),
     .CLKOUT0_DUTY_CYCLE(0.500000),
     .CLKOUT0_PHASE(0.000000),
     .CLKOUT0_USE_FINE_PS("FALSE"),

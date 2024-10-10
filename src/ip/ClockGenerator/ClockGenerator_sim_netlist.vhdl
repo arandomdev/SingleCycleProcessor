@@ -2,10 +2,10 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
--- Date        : Sat Sep 28 20:46:43 2024
+-- Date        : Wed Oct  9 21:34:07 2024
 -- Host        : Spire running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               c:/Users/haow6/Desktop/projects/ECE505/SingleCycleProcessor/src/ip/ClockGenerator/ClockGenerator_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top ClockGenerator -prefix
+--               ClockGenerator_ ClockGenerator_sim_netlist.vhdl
 -- Design      : ClockGenerator
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -15,16 +15,16 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity ClockGenerator_clk_wiz is
+entity ClockGenerator_ClockGenerator_clk_wiz is
   port (
     sysClk : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC;
     rawClk : in STD_LOGIC
   );
-end ClockGenerator_clk_wiz;
+end ClockGenerator_ClockGenerator_clk_wiz;
 
-architecture STRUCTURE of ClockGenerator_clk_wiz is
+architecture STRUCTURE of ClockGenerator_ClockGenerator_clk_wiz is
   signal clkfbout_ClockGenerator : STD_LOGIC;
   signal clkfbout_buf_ClockGenerator : STD_LOGIC;
   signal rawClk_ClockGenerator : STD_LOGIC;
@@ -78,12 +78,12 @@ clkout1_buf: unisim.vcomponents.BUFG
 mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
     generic map(
       BANDWIDTH => "OPTIMIZED",
-      CLKFBOUT_MULT_F => 10.000000,
+      CLKFBOUT_MULT_F => 9.125000,
       CLKFBOUT_PHASE => 0.000000,
       CLKFBOUT_USE_FINE_PS => false,
       CLKIN1_PERIOD => 10.000000,
       CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE_F => 20.000000,
+      CLKOUT0_DIVIDE_F => 36.500000,
       CLKOUT0_DUTY_CYCLE => 0.500000,
       CLKOUT0_PHASE => 0.000000,
       CLKOUT0_USE_FINE_PS => false,
@@ -179,7 +179,7 @@ end ClockGenerator;
 
 architecture STRUCTURE of ClockGenerator is
 begin
-inst: entity work.ClockGenerator_clk_wiz
+inst: entity work.ClockGenerator_ClockGenerator_clk_wiz
      port map (
       locked => locked,
       rawClk => rawClk,

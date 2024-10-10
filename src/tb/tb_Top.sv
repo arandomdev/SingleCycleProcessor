@@ -11,7 +11,11 @@ module tb_Top
   Top top (
       .rawClk(clk),
       .extReset(reset),
-      .halt(halt)
+      .halt(halt),
+      .ramDebugEn(0),
+      .ramByteSel(0),
+      .ramAddr(0),
+      .ramData()
   );
 
   // Create clock with period of 10ns
@@ -38,9 +42,7 @@ module tb_Top
 
       top.regFile.registers = vector.initialRegFileState;
       top.ram.ram = vector.initialRamState;
-      for (int j = 0; j < vector.instructions.size; j++) begin
-        top.rom.rom[j] = vector.instructions[j];
-      end
+      $readmemh(vector.instructionsFile, top.rom.rom);
 
       $display("Running...");
       reset = 0;

@@ -2,10 +2,10 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-// Date        : Sat Sep 28 20:46:43 2024
+// Date        : Wed Oct  9 21:34:07 2024
 // Host        : Spire running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               c:/Users/haow6/Desktop/projects/ECE505/SingleCycleProcessor/src/ip/ClockGenerator/ClockGenerator_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top ClockGenerator -prefix
+//               ClockGenerator_ ClockGenerator_stub.v
 // Design      : ClockGenerator
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a35tcpg236-1
