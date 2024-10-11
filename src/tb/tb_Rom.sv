@@ -4,8 +4,7 @@ module tb_Rom ();
   parameter int ClockHalfPeriod = 5;
   parameter int Depth = 32;
   parameter int Width = 32;
-
-  localparam int AddrWidth = $clog2(Depth);
+  parameter int AddrWidth = 30;
 
   logic clk;
   logic reset;
@@ -15,7 +14,8 @@ module tb_Rom ();
   // DUT Instantiation
   Rom #(
       .Width(Width),
-      .Depth(Depth)
+      .Depth(Depth),
+      .AddrWidth(AddrWidth)
   ) rom (
       .*
   );

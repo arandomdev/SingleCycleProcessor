@@ -6,7 +6,7 @@ module tb_ALUControl
   logic [1:0] funct7Parts;
   logic [2:0] funct3;
   logic [1:0] aluOp;
-  wire  [4:0] aluOpcode;
+  ALUOpcode::t_e aluOpcode;
 
   ALUControl dut (.*);
 
@@ -19,10 +19,11 @@ module tb_ALUControl
     assert (aluOpcode == ALUOpcode::ADD)
     else $display("ALU Op ADD Incorrect");
 
-    aluOp = 2'b01;
+    funct3 = 1;
+    aluOp  = 2'b01;
     #1;
-    assert (aluOpcode == ALUOpcode::SUB)
-    else $display("ALU Op SUB Incorrect");
+    assert (aluOpcode == ALUOpcode::EQ)
+    else $display("ALU Op B-type Incorrect");
 
     funct7Parts = 2;
     funct3 = 0;
